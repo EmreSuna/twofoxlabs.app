@@ -4,36 +4,106 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CoupleCup Gizlilik Politikası</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F5F0E8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171412" media="(prefers-color-scheme: dark)">
 <meta name="description" content="CoupleCup uygulamasının kişisel verileri nasıl işlediğini anlatan gizlilik politikası ve KVKK aydınlatma metni.">
+<link rel="preload" href="fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  @font-face { font-family: "Fraunces"; font-style: normal; font-weight: 300 700; font-display: swap;
+    src: url(fonts/fraunces-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  @font-face { font-family: "Fraunces"; font-style: normal; font-weight: 300 700; font-display: swap;
+    src: url(fonts/fraunces-latin-ext.woff2) format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+  @font-face { font-family: "Fraunces"; font-style: italic; font-weight: 300 700; font-display: swap;
+    src: url(fonts/fraunces-italic-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  @font-face { font-family: "Fraunces"; font-style: italic; font-weight: 300 700; font-display: swap;
+    src: url(fonts/fraunces-italic-latin-ext.woff2) format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+  @font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 600; font-display: swap;
+    src: url(fonts/instrument-sans-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  @font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 600; font-display: swap;
+    src: url(fonts/instrument-sans-latin-ext.woff2) format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
   :root {
-    --bg: #ffffff; --text: #1a1a1a; --muted: #60646c; --line: #e4e4e7; --accent: #c2255c; --soft: #fdf4f8;
+    --paper: #F5F0E8; --card: #FCFAF6; --ink: #1E1A16; --body: #3A332C; --muted: #6E655B; --line: #DDD3C5; --fox-text: #A9441E;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #141416; --text: #f2f2f4; --muted: #a0a3ab; --line: #2e2e33; --accent: #f783ac; --soft: #1e1a1d; }
+    :root { --paper: #171412; --card: #211D1A; --ink: #F1EAE0; --body: #D6CEC3; --muted: #A1978B; --line: #36302A; --fox-text: #EE9670; }
+  }
+  /* İki tilki: kızıl (a) ve gümüş (b); koyu modda b kutup tilkisi olur */
+  .fa { --fur: #C8552B; --fur2: #B04820; --tail: #B54A22; --tail2: #9E3F1C; --sock: #3A2A22; --ear: #FBE9D6;
+        --mask: #FFFBF4; --eye: #1E1A16; --nose: #1E1A16; --glint: #FFFDF8; --lid: #1E1A16; }
+  .fb { --fur: #3A2F29; --fur2: #2F2621; --tail: #2F2621; --tail2: #261E1A; --sock: #221A16; --ear: #9C8B7E;
+        --mask: #FFFBF4; --eye: #D9952E; --nose: #1A1411; --glint: #FFF6E0; --lid: #D8C6B2; }
+  @media (prefers-color-scheme: dark) {
+    .fb { --fur: #EDE5D9; --fur2: #DED3C4; --tail: #DCCFBE; --tail2: #CDBFAC; --sock: #B9A894; --ear: #C9B9A6;
+          --mask: #FFFFFF; --eye: #2A211C; --nose: #2A211C; --glint: #FFFFFF; --lid: #2A211C; }
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
-  h1 { font-size: 28px; line-height: 1.25; margin: 0 0 8px; }
-  h2 { font-size: 20px; margin: 40px 0 8px; padding-top: 8px; border-top: 1px solid var(--line); }
-  h3 { font-size: 16px; margin: 24px 0 4px; }
-  p, li { color: var(--text); }
-  .meta { color: var(--muted); font-size: 14px; margin: 0 0 24px; }
-  .box { background: var(--soft); border-radius: 12px; padding: 16px 18px; margin: 16px 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--body); font: 16.5px/1.7 var(--sans); }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 16px 72px; }
+  .site-top { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; margin: 0 0 40px; }
+  .site-top svg { width: 52px; height: 29px; }
+  .site-top span { font: 600 17px/1 var(--serif); }
+  h1 { font: 400 clamp(32px, 6vw, 44px)/1.12 var(--serif); letter-spacing: -0.02em; color: var(--ink); margin: 0 0 10px; }
+  h2 { font: 400 25px/1.25 var(--serif); color: var(--ink); margin: 48px 0 10px; padding-top: 20px; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
+  h2:target { color: var(--fox-text); }
+  h3 { font: 600 16px/1.4 var(--sans); color: var(--ink); margin: 26px 0 6px; }
+  p, li { color: var(--body); }
+  strong { color: var(--ink); }
+  .meta { color: var(--muted); font-size: 14px; margin: 0 0 28px; }
+  .box { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 20px; margin: 16px 0; }
   .box p { margin: 6px 0; }
   table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 12px 0; }
-  th, td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); }
-  th { font-weight: 600; }
-  a { color: var(--accent); }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; color: var(--ink); }
+  a { color: var(--fox-text); text-underline-offset: 3px; }
   ul { padding-left: 20px; }
-  @media (max-width: 520px) { table, thead, tbody, tr, th, td { display: block; } thead { display: none; } td { padding: 2px 0; border: 0; } tr { padding: 10px 0; border-bottom: 1px solid var(--line); } td:first-child { font-weight: 600; } }
+  @media (max-width: 520px) { table, thead, tbody, tr, th, td { display: block; } thead { display: none; } td { padding: 2px 0; border: 0; } tr { padding: 10px 0; border-bottom: 1px solid var(--line); } td:first-child { font-weight: 600; color: var(--ink); } }
 </style>
 </head>
 <body>
 <main>
 
-<p class="meta"><a href="./">← Two Fox Labs</a></p>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+    <symbol id="head" viewBox="0 0 100 100" overflow="visible">
+      <path fill="var(--fur)" d="M50 93 C46 92 41 86 37 81 C31 76 24 72 17 67 L23 63 C17 61 12 57 8 52 C14 51 18 49 20 45 C17 40 15 34 14 26 C13 18 14 10 17 3 C24 8 32 15 39 22 C43 21 47 20.5 50 20.5 C53 20.5 57 21 61 22 C68 15 76 8 83 3 C86 10 87 18 86 26 C85 34 83 40 80 45 C82 49 86 51 92 52 C88 57 83 61 77 63 L83 67 C76 72 69 76 63 81 C59 86 54 92 50 93 Z"/>
+      <path fill="var(--fur2)" d="M39 22 C43 21 47 20.5 50 20.5 C53 20.5 57 21 61 22 C57 28 53 34 50 42 C47 34 43 28 39 22 Z"/>
+      <path fill="var(--ear)" d="M19.5 10 C24.5 15 30 20 34.5 24.5 C29 27 25 30 22 34 C19.5 27 18.5 18 19.5 10 Z"/>
+      <path fill="var(--ear)" d="M80.5 10 C75.5 15 70 20 65.5 24.5 C71 27 75 30 78 34 C80.5 27 81.5 18 80.5 10 Z"/>
+      <path fill="var(--mask)" d="M46.2 57 C43 53.5 39 51.6 34 51.3 C28 51 21 51.6 15.5 53 C19 56.5 23 59 28 60.8 L24.5 64 C31 68 38 73 43 79 C45.5 82 47 85 48 87 C47.6 79 46.8 68 46.5 62 C46.4 60 46.3 58.5 46.2 57 Z"/>
+      <path fill="var(--mask)" d="M53.8 57 C57 53.5 61 51.6 66 51.3 C72 51 79 51.6 84.5 53 C81 56.5 77 59 72 60.8 L75.5 64 C69 68 62 73 57 79 C54.5 82 53 85 52 87 C52.4 79 53.2 68 53.5 62 C53.6 60 53.7 58.5 53.8 57 Z"/>
+      <g style="visibility:var(--open,visible)">
+        <ellipse cx="37.6" cy="45.6" rx="5.6" ry="3.7" transform="rotate(-14 37.6 45.6)" fill="var(--eye)"/>
+        <ellipse cx="62.4" cy="45.6" rx="5.6" ry="3.7" transform="rotate(14 62.4 45.6)" fill="var(--eye)"/>
+        <circle cx="39.3" cy="44.3" r="1.15" fill="var(--glint)"/>
+        <circle cx="64.1" cy="44.3" r="1.15" fill="var(--glint)"/>
+      </g>
+      <g style="visibility:var(--closed,hidden)" fill="none" stroke="var(--lid)" stroke-width="2.3" stroke-linecap="round">
+        <path d="M31.8 44.6 Q37.4 49.6 43.4 46.6"/>
+        <path d="M68.2 44.6 Q62.6 49.6 56.6 46.6"/>
+      </g>
+      <path fill="var(--nose)" d="M45.2 86.6 C48 85.4 52 85.4 54.8 86.6 C54.2 89.6 52.3 92 50 93 C47.7 92 45.8 89.6 45.2 86.6 Z"/>
+    </symbol>
+    <symbol id="foxes" viewBox="-2 -4 192 104">
+      <g class="fb" transform="translate(186 0) scale(-1 1) rotate(10 50 80)"><use href="#head" width="100" height="100"/></g>
+      <g class="fa" transform="translate(4 0) rotate(10 50 80)"><use href="#head" width="100" height="100"/></g>
+    </symbol>
+  </defs></svg>
+<a class="site-top" href="./" aria-label="Two Fox Labs ana sayfa"><svg viewBox="-2 -4 192 104" aria-hidden="true"><use href="#foxes"/></svg><span>Two Fox Labs</span></a>
 <h1>CoupleCup Gizlilik Politikası</h1>
 <p class="meta">KVKK Aydınlatma Metni · Sürüm 1 · Yürürlük tarihi: 9 Ekim 2026</p>
 
@@ -183,7 +253,7 @@
 </table>
 <p>Ulaşmış (açılmış) bir mektup tasarım gereği silinemez. Mektup alıcısına aittir. Eşleşme sona erdiğinde yukarıdaki 6 aylık süreyle birlikte silinir.</p>
 
-<h2>8. Hesabınızı silmek</h2>
+<h2 id="hesap-silme">8. Hesabınızı silmek</h2>
 <p>Hesabınızı Ayarlar → Hesabı sil adımıyla uygulamanın içinden silebilirsiniz. Uygulamaya erişemiyorsanız <a href="mailto:twofoxlabs@gmail.com">twofoxlabs@gmail.com</a> adresine kayıtlı e-postanızdan yazmanız yeterlidir.</p>
 <ul>
   <li><strong>Bir partnerle eşleşmemişseniz:</strong> hesabınız ve tüm bilgileriniz hemen silinir.</li>

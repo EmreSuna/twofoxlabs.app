@@ -3,16 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Two Fox Labs</title>
-<meta name="description" content="Two Fox Labs, Gaziantep’te bağımsız çalışan küçük bir uygulama stüdyosu. İlk uygulamamız CoupleCup: çiftler için ortak bir defter.">
-<meta property="og:title" content="Two Fox Labs">
-<meta property="og:description" content="Birbirine yakın duranlar için uygulamalar. İlk uygulamamız CoupleCup.">
-<meta property="og:url" content="https://twofoxlabs.app/">
+<title>CoupleCup · Two Fox Labs</title>
+<meta name="description" content="CoupleCup, iki kişilik ortak bir defter: günün sorusu, mühürlü mektuplar, anılar ve birlikte yapılacaklar. Two Fox Labs, Gaziantep’te bağımsız çalışan küçük bir uygulama stüdyosu.">
+<link rel="canonical" href="https://twofoxlabs.app/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Two Fox Labs">
+<meta property="og:title" content="CoupleCup · Two Fox Labs">
+<meta property="og:description" content="İki kişilik ortak bir defter. Günün sorusu, mühürlü mektuplar, anılar. Reklam yok.">
+<meta property="og:url" content="https://twofoxlabs.app/">
+<meta property="og:image" content="https://twofoxlabs.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Başlarını birbirine yaslamış iki tilki ve CoupleCup yazısı">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F5F0E8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#171412" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   @font-face { font-family: "Fraunces"; font-style: normal; font-weight: 300 700; font-display: swap;
     src: url(fonts/fraunces-latin.woff2) format("woff2");
@@ -35,8 +45,9 @@
 
   :root {
     --paper: #F5F0E8; --card: #FCFAF6; --ink: #1E1A16; --body: #3A332C; --muted: #6E655B; --line: #DDD3C5;
-    --stage: #DCEAF3; --bezel: #1E1A16; --spark: #FFFFFF;
-    --fox: #C8552B; --fox-ear: #8E3A1C; --fox-text: #A9441E; --cheek: #FFFDF8; --fox2: #1E1A16; --fox2-eye: #FFFDF8; --fox2-cheek: #FFFDF8; --ocean: #2F9BD8; --ocean-deep: #1A6A9E;
+    --fox: #C8552B; --fox-text: #A9441E; --btn: #A9441E; --btn-text: #FFFFFF;
+    --ocean: #2F9BD8; --ocean-deep: #1A6A9E; --stage: #DCEAF3; --bezel: #1E1A16; --spark: #FFFFFF;
+    --moon: #ECE2D2; --star: #D9A441; --ground: #E6DBCB; --avatar: #FBE3EC; --avatar-text: #C2255C;
     --shadow: 0 1px 0 rgba(30, 26, 22, .04), 0 12px 32px -12px rgba(30, 26, 22, .22);
     --serif: "Fraunces", Georgia, "Times New Roman", serif;
     --sans: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -44,50 +55,76 @@
   @media (prefers-color-scheme: dark) {
     :root {
       --paper: #171412; --card: #211D1A; --ink: #F1EAE0; --body: #D6CEC3; --muted: #A1978B; --line: #36302A;
-      --stage: #16212B; --bezel: #050404; --spark: #2F9BD8;
-      --fox: #E07A4C; --fox-ear: #A34A26; --fox-text: #EE9670; --cheek: #FFF8EE; --fox2: #EDE5D9; --fox2-eye: #171412; --fox2-cheek: #FFFFFF; --ocean-deep: #7CC3EC;
+      --fox: #E07A4C; --fox-text: #EE9670; --btn: #E07A4C; --btn-text: #171412;
+      --ocean-deep: #7CC3EC; --stage: #16212B; --bezel: #050404; --spark: #2F9BD8;
+      --moon: #221D19; --star: #E8C27A; --ground: #0F0D0B; --avatar: #3A2530; --avatar-text: #F3A6C4;
       --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 36px -14px rgba(0, 0, 0, .7);
     }
   }
+
+  /* İki tilki: kızıl (a) ve gümüş (b); koyu modda b kutup tilkisi olur */
+  .fa { --fur: #C8552B; --fur2: #B04820; --tail: #B54A22; --tail2: #9E3F1C; --sock: #3A2A22; --ear: #FBE9D6;
+        --mask: #FFFBF4; --eye: #1E1A16; --nose: #1E1A16; --glint: #FFFDF8; --lid: #1E1A16; }
+  .fb { --fur: #3A2F29; --fur2: #2F2621; --tail: #2F2621; --tail2: #261E1A; --sock: #221A16; --ear: #9C8B7E;
+        --mask: #FFFBF4; --eye: #D9952E; --nose: #1A1411; --glint: #FFF6E0; --lid: #D8C6B2; }
+  @media (prefers-color-scheme: dark) {
+    .fb { --fur: #EDE5D9; --fur2: #DED3C4; --tail: #DCCFBE; --tail2: #CDBFAC; --sock: #B9A894; --ear: #C9B9A6;
+          --mask: #FFFFFF; --eye: #2A211C; --nose: #2A211C; --glint: #FFFFFF; --lid: #2A211C; }
+  }
+
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body { margin: 0; background: var(--paper); color: var(--body); font: 17px/1.6 var(--sans); }
   a { color: inherit; }
   ::selection { background: var(--fox); color: #fff; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--fox); outline-offset: 3px; border-radius: 4px; }
 
   /* Üst şerit */
-  .top { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; padding-bottom: 28px; }
+  .top { display: flex; align-items: center; justify-content: space-between; padding-top: 24px; padding-bottom: 24px; }
   .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
-  .brand svg { width: 46px; height: 34px; }
-  .brand span { font: 600 18px/1 var(--serif); letter-spacing: -0.01em; }
+  .brand svg { width: 62px; height: 34px; }
+  .brand span { font: 600 19px/1 var(--serif); letter-spacing: -0.01em; }
   .top nav { display: flex; gap: 24px; font-size: 15px; }
   .top nav a { text-decoration: none; color: var(--muted); }
   .top nav a:hover { color: var(--ink); }
 
   /* Giriş */
-  .hero { padding: 72px 0 96px; border-bottom: 1px solid var(--line); }
-  .eyebrow { font-size: 14px; letter-spacing: .04em; color: var(--muted); margin: 0 0 28px; }
+  .hero { padding: 40px 0 88px; border-bottom: 1px solid var(--line); }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+  .eyebrow { font-size: 14px; letter-spacing: .04em; color: var(--muted); margin: 0 0 26px; }
   .eyebrow b { color: var(--fox-text); font-weight: 500; }
-  h1 { font: 400 clamp(42px, 7.4vw, 92px)/1.02 var(--serif); letter-spacing: -0.025em; color: var(--ink); margin: 0; max-width: 13ch;
+  h1 { font: 400 clamp(42px, 7vw, 88px)/1.02 var(--serif); letter-spacing: -0.025em; color: var(--ink); margin: 0;
        font-variation-settings: "opsz" 144, "SOFT" 50; }
   h1 em { font-style: italic; color: var(--fox-text); font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
-  .hero p.lead { max-width: 34em; margin: 36px 0 0; font-size: 19px; color: var(--body); }
+  .lead { max-width: 30em; margin: 32px 0 0; font-size: 19px; }
+  .hero-link { display: inline-flex; gap: 8px; align-items: baseline; margin-top: 28px; font-size: 16px; color: var(--ink);
+               text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 3px; }
+  .hero-link:hover { border-color: var(--fox); }
+  .hero-link span { color: var(--fox-text); transition: transform .25s ease; }
+  .hero-link:hover span { transform: translateX(3px); }
+  .duo { width: 100%; max-width: 440px; height: auto; justify-self: end; display: block; }
+  .duo .moon { fill: var(--moon); } .duo .ground { fill: var(--ground); } .star { fill: var(--star); }
+  .twinkle { animation: twinkle 5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .twinkle.t2 { animation-delay: -1.7s; } .twinkle.t3 { animation-delay: -3.3s; }
+  @keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
 
   /* Bölüm başlıkları */
   .section { padding: 96px 0; border-bottom: 1px solid var(--line); }
   .label { display: flex; gap: 14px; align-items: baseline; font-size: 14px; color: var(--muted); margin: 0 0 40px; }
   .label .n { font: italic 400 15px/1 var(--serif); color: var(--fox-text); }
+  h2 { font: 400 clamp(34px, 4.6vw, 52px)/1.05 var(--serif); letter-spacing: -0.02em; color: var(--ink); margin: 0; }
+  h3 { font: 400 clamp(26px, 3.2vw, 36px)/1.12 var(--serif); letter-spacing: -0.015em; color: var(--ink); margin: 0 0 18px; }
 
   /* CoupleCup */
-  .app-head { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
-  .app-head svg.icon { width: 76px; height: 76px; border-radius: 19px; flex: none; box-shadow: var(--shadow); }
-  h2 { font: 400 clamp(34px, 4.6vw, 52px)/1.05 var(--serif); letter-spacing: -0.02em; color: var(--ink); margin: 0; }
+  .app-head { display: flex; gap: 22px; align-items: center; }
+  .app-head > div { min-width: 0; }
+  .app-head .icon { width: 76px; height: 76px; border-radius: 19px; flex: none; box-shadow: var(--shadow); }
   .status { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin-top: 6px; }
   .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ocean); }
-  .app-intro { font-size: 20px; line-height: 1.55; max-width: 32em; margin: 32px 0 0; color: var(--body); }
+  .app-intro { font-size: 20px; line-height: 1.55; max-width: 32em; margin: 32px 0 0; }
 
-  /* Telefon sahnesi: telefonlar zeminin altından yükselir, ekranların boş alt kısmı görünmez */
+  /* Telefon sahnesi: telefonlar zeminin altından yükselir */
   .stage { position: relative; height: 560px; margin: 56px 0 0; overflow: hidden; border-radius: 28px; background: var(--stage); }
   .phone { position: absolute; left: 50%; width: 270px; padding: 9px; border-radius: 44px; background: var(--bezel);
            box-shadow: 0 30px 60px -20px rgba(16, 40, 60, .45), inset 0 0 0 1.5px rgba(255, 255, 255, .08); }
@@ -97,49 +134,79 @@
   .phone.l { bottom: -175px; transform: translateX(-50%) translateX(-250px) rotate(-7deg); }
   .phone.r { bottom: -175px; transform: translateX(-50%) translateX(250px) rotate(7deg); }
   .spark { position: absolute; fill: var(--spark); }
-  .spark.s1 { width: 34px; top: 44px; left: 9%; }
-  .spark.s2 { width: 18px; top: 112px; left: 15%; }
-  .spark.s3 { width: 26px; top: 64px; right: 11%; }
+  .spark.s1 { width: 34px; top: 44px; left: 9%; } .spark.s2 { width: 18px; top: 112px; left: 15%; } .spark.s3 { width: 26px; top: 64px; right: 11%; }
   .stage-note { margin: 14px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
 
-  .app-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 72px; margin-top: 64px; align-items: start; }
+  /* Özellikler: uygulamanın kendi simgeleriyle */
+  .features { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 32px; margin: 72px 0 0; padding: 0; list-style: none; }
+  .features li { border-top: 1px solid var(--line); padding-top: 20px; }
+  .features svg { width: 26px; height: 26px; stroke: var(--ocean-deep); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .features svg .solid { fill: var(--ocean-deep); stroke: none; }
+  .features h4 { font: 400 21px/1.25 var(--serif); color: var(--ink); margin: 14px 0 6px; }
+  .features p { margin: 0; font-size: 15px; line-height: 1.55; }
 
-  /* Uygulamadan iki kart */
-  .scene { position: relative; min-height: 440px; }
-  .note { position: absolute; width: min(330px, 86%); background: var(--card); border-radius: 18px; padding: 22px 22px 20px;
+  /* Sunucudaki iki kural */
+  .rules { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center; margin-top: 104px; }
+  .rules p { margin: 0 0 14px; max-width: 30em; }
+  .rules .fine { color: var(--muted); font-size: 15px; }
+  .scene { display: flex; flex-direction: column; max-width: 500px; width: 100%; justify-self: end; }
+  .note { position: relative; width: min(340px, 90%); background: var(--card); border-radius: 18px; padding: 20px 22px 18px;
           box-shadow: var(--shadow); border: 1px solid var(--line); transition: transform .4s ease; }
-  .note.q { top: 0; left: 0; transform: rotate(-2.2deg); }
-  .note.l { top: 210px; right: 0; transform: rotate(1.8deg); }
-  .scene:hover .note.q { transform: rotate(-1deg) translateY(-4px); }
-  .scene:hover .note.l { transform: rotate(.6deg) translateY(4px); }
-  .note .kicker { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ocean-deep); font-weight: 600; margin: 0 0 12px; }
-  .note .qtext { font: 400 23px/1.25 var(--serif); color: var(--ink); margin: 0 0 18px; }
+  .note.q { align-self: flex-start; transform: rotate(-2deg); }
+  .note.l { align-self: flex-end; margin-top: 6px; transform: rotate(1.6deg); }
+  .scene:hover .note.q { transform: rotate(-1deg) translateY(-3px); }
+  .scene:hover .note.l { transform: rotate(.6deg) translateY(3px); }
+  .kicker { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ocean-deep); font-weight: 600; margin: 0 0 10px; }
+  .qtext { font: 400 22px/1.25 var(--serif); color: var(--ink); margin: 0 0 14px; }
   .row { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); padding: 8px 0; border-top: 1px dashed var(--line); }
-  .av { width: 26px; height: 26px; border-radius: 50%; color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 600; flex: none; }
+  .av { width: 26px; height: 26px; border-radius: 50%; background: var(--avatar); color: var(--avatar-text); display: grid; place-items: center; font-size: 12px; font-weight: 600; flex: none; }
   .blur { flex: 1; height: 9px; border-radius: 5px; background: var(--line); filter: blur(1.5px); }
   .row .who { color: var(--body); }
-  .seal { width: 52px; height: 52px; border-radius: 50%; background: var(--fox); display: grid; place-items: center; float: right;
+  .seal { width: 50px; height: 50px; border-radius: 50%; background: var(--fox); display: grid; place-items: center; float: right;
           margin: -4px -4px 8px 12px; box-shadow: inset 0 0 0 4px rgba(255,255,255,.18), 0 3px 8px -2px rgba(0,0,0,.3); }
-  .seal svg { width: 24px; height: 24px; }
-  .note .ltitle { font: italic 400 21px/1.25 var(--serif); color: var(--ink); margin: 0 0 6px; }
-  .note .lmeta { font-size: 14px; color: var(--muted); margin: 0; }
-  .lines { clear: both; padding-top: 16px; display: grid; gap: 9px; }
+  .seal svg { width: 22px; height: 22px; }
+  .ltitle { font: italic 400 20px/1.25 var(--serif); color: var(--ink); margin: 0 0 6px; }
+  .lmeta { font-size: 14px; color: var(--muted); margin: 0; }
+  .lines { clear: both; padding-top: 14px; display: grid; gap: 9px; }
   .lines i { display: block; height: 8px; border-radius: 4px; background: var(--line); }
   .lines i:nth-child(2) { width: 88%; } .lines i:nth-child(3) { width: 64%; }
+  /* elle düşülmüş notlar: kartın altında, ok yukarıdaki satırı gösterir */
+  .hand { display: flex; align-items: flex-end; gap: 6px; margin: 4px 0 0; font: italic 400 17px/1.2 var(--serif); color: var(--fox-text); }
+  .hand svg { width: 46px; height: 34px; flex: none; fill: none; stroke: var(--fox-text); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .hand.h1 { align-self: flex-start; margin-left: clamp(120px, 44%, 210px); }
+  .hand.h2 { align-self: flex-end; margin-right: clamp(12px, 8%, 48px); }
 
-  /* Özellik listesi */
-  dl.features { margin: 0; }
-  .features div { display: grid; grid-template-columns: 11rem 1fr; gap: 24px; padding: 20px 0; border-top: 1px solid var(--line); }
-  .features div:last-child { border-bottom: 1px solid var(--line); }
-  .features dt { font: 400 21px/1.3 var(--serif); color: var(--ink); }
-  .features dd { margin: 0; font-size: 16px; color: var(--body); }
-  .app-links { margin-top: 28px; font-size: 15px; color: var(--muted); }
-  .app-links a { color: var(--ocean-deep); text-underline-offset: 3px; }
+  /* Kapalı test */
+  .beta { margin-top: 96px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 28px; align-items: center;
+          background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 30px 32px; }
+  .beta .droid { width: 54px; height: 54px; border-radius: 16px; background: var(--paper); display: grid; place-items: center; border: 1px solid var(--line); }
+  .beta .droid svg { width: 30px; height: 30px; fill: none; stroke: var(--fox-text); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .beta h3 { font-size: 26px; margin: 0 0 6px; }
+  .beta p { margin: 0; font-size: 16px; max-width: 36em; }
+  .beta .fine { margin-top: 8px; font-size: 13.5px; color: var(--muted); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--btn); color: var(--btn-text); text-decoration: none; font-weight: 600;
+         font-size: 16px; padding: 14px 22px; border-radius: 999px; white-space: nowrap; transition: transform .2s ease, box-shadow .2s ease; }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px -10px var(--btn); }
+
+  /* SSS */
+  .faq-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); gap: 64px; align-items: start; }
+  .faq-side { position: sticky; top: 32px; }
+  .faq-side p:not(.label) { margin: 18px 0 0; color: var(--muted); font-size: 16px; max-width: 22em; }
+  .faq-side a { color: var(--fox-text); text-underline-offset: 3px; }
+  details { border-top: 1px solid var(--line); }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 24px; align-items: baseline;
+            padding: 20px 0; font: 400 21px/1.3 var(--serif); color: var(--ink); }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font: 300 26px/1 var(--sans); color: var(--fox-text); transition: transform .25s ease; flex: none; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { margin: -4px 0 22px; max-width: 38em; font-size: 16px; }
+  details a { color: var(--fox-text); text-underline-offset: 3px; }
 
   /* İlkeler */
   .principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; margin: 0; padding: 0; list-style: none; }
-  .principles h3 { font: 400 26px/1.2 var(--serif); color: var(--ink); margin: 0 0 12px; }
-  .principles h3 small { display: block; font: italic 400 15px/1 var(--serif); color: var(--fox-text); margin-bottom: 18px; }
+  .principles h4 { font: 400 26px/1.2 var(--serif); color: var(--ink); margin: 0 0 12px; }
+  .principles h4 small { display: block; font: italic 400 15px/1 var(--serif); color: var(--fox-text); margin-bottom: 18px; }
   .principles p { margin: 0; font-size: 16px; }
 
   /* İletişim */
@@ -150,37 +217,48 @@
   .mail:hover, .mail:focus-visible { background-size: 100% 2px; }
 
   footer { border-top: 1px solid var(--line); padding: 28px 0 40px; font-size: 14px; color: var(--muted); }
-  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px 28px; flex-wrap: wrap; align-items: center; }
+  footer .who { display: inline-flex; gap: 12px; align-items: center; }
+  footer .who svg { width: 40px; height: 22px; flex: none; }
+  footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
   footer a { text-underline-offset: 3px; }
 
-  a:focus-visible { outline: 2px solid var(--fox); outline-offset: 3px; border-radius: 3px; }
-
+  @media (max-width: 960px) {
+    .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
   @media (max-width: 860px) {
-    .app-body { grid-template-columns: 1fr; gap: 56px; }
-    .scene { min-height: 400px; max-width: 460px; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 8px; }
+    .duo { order: -1; justify-self: center; max-width: 320px; }
+    .rules { grid-template-columns: 1fr; gap: 40px; }
+    .scene { justify-self: start; }
+    .beta { grid-template-columns: 1fr; gap: 18px; }
+    .faq-grid { grid-template-columns: 1fr; gap: 28px; }
+    .faq-side { position: static; }
+    .principles { grid-template-columns: 1fr; gap: 40px; }
     .stage { height: 500px; }
     .phone { width: 230px; border-radius: 38px; padding: 8px; }
     .phone img { border-radius: 30px; }
     .phone.c { bottom: -110px; }
     .phone.l { bottom: -170px; transform: translateX(-50%) translateX(-190px) rotate(-7deg); }
     .phone.r { bottom: -170px; transform: translateX(-50%) translateX(190px) rotate(7deg); }
-    .principles { grid-template-columns: 1fr; gap: 40px; }
   }
   @media (max-width: 560px) {
     body { font-size: 16px; }
     .wrap { padding: 0 16px; }
-    .top { padding-top: 20px; padding-bottom: 20px; }
+    .top { padding-top: 18px; padding-bottom: 18px; }
+    .brand svg { width: 52px; height: 29px; }
+    .brand span { font-size: 17px; }
     .top nav { gap: 16px; }
-    .top nav a.hide-s { display: none; }
-    .hero { padding: 48px 0 64px; }
-    .hero p.lead { font-size: 17px; margin-top: 28px; }
+    .top nav .hide-s { display: none; }
+    .hero { padding: 8px 0 64px; }
+    .duo { max-width: 270px; }
+    .lead { font-size: 17px; margin-top: 24px; }
     .section { padding: 64px 0; }
     .app-intro { font-size: 18px; }
-    .features div { grid-template-columns: 1fr; gap: 4px; }
-    .scene { min-height: 420px; }
-    .note { width: 92%; }
-    .note.l { top: 220px; }
-    .contact { padding: 72px 0; }
+    .app-head { gap: 16px; }
+    .app-head .icon { width: 64px; height: 64px; border-radius: 16px; }
+    .status { font-size: 13px; }
+    .btn { justify-content: center; }
     .stage { height: 420px; margin-top: 40px; border-radius: 22px; }
     .phone { width: 190px; border-radius: 32px; padding: 7px; }
     .phone img { border-radius: 25px; }
@@ -188,40 +266,81 @@
     .phone.l { bottom: -150px; transform: translateX(-50%) translateX(-118px) rotate(-8deg); }
     .phone.r { bottom: -150px; transform: translateX(-50%) translateX(118px) rotate(8deg); }
     .spark.s2 { display: none; }
+    .features { grid-template-columns: 1fr; gap: 0; margin-top: 48px; }
+    .features li { display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; padding: 18px 0; }
+    .features li:last-child { border-bottom: 1px solid var(--line); }
+    .features svg { grid-row: span 2; margin-top: 2px; }
+    .features h4 { margin: 0 0 4px; font-size: 20px; }
+    .rules { margin-top: 72px; }
+    .note { width: 92%; }
+    .hand { font-size: 16px; }
+    .beta { margin-top: 72px; padding: 24px 22px; }
+    .contact { padding: 72px 0; }
   }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="foxes" viewBox="-3 -4 66 42">
-    <g transform="rotate(-6 16 20)">
-      <path d="M2 2 L11 11 L21 11 L30 2 L29.5 15 L16 34 L2.5 15 Z" fill="var(--fox)" stroke-linejoin="round"/>
-      <path d="M5.5 5.5 L9.5 10.2 L5.6 11.2 Z M26.5 5.5 L22.5 10.2 L26.4 11.2 Z" fill="var(--fox-ear)"/>
-      <path d="M4.6 16.4 L13 20.6 L15.6 30.2 Z M27.4 16.4 L19 20.6 L16.4 30.2 Z" fill="var(--cheek)"/>
-      <circle cx="11.2" cy="15.6" r="1.35" fill="var(--ink)"/><circle cx="20.8" cy="15.6" r="1.35" fill="var(--ink)"/>
-      <circle cx="16" cy="32" r="1.7" fill="var(--ink)"/>
-    </g>
-    <g transform="translate(27 -1) rotate(6 16 20)">
-      <path d="M2 2 L11 11 L21 11 L30 2 L29.5 15 L16 34 L2.5 15 Z" fill="var(--fox2)" stroke="var(--paper)" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round"/>
-      <path d="M5.5 5.5 L9.5 10.2 L5.6 11.2 Z M26.5 5.5 L22.5 10.2 L26.4 11.2 Z" fill="var(--fox)"/>
-      <path d="M4.6 16.4 L13 20.6 L15.6 30.2 Z M27.4 16.4 L19 20.6 L16.4 30.2 Z" fill="var(--fox2-cheek)"/>
-      <circle cx="11.2" cy="15.6" r="1.35" fill="var(--fox2-eye)"/><circle cx="20.8" cy="15.6" r="1.35" fill="var(--fox2-eye)"/>
-      <circle cx="16" cy="32" r="1.7" fill="var(--fox)"/>
-    </g>
-  </symbol>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- tilki başı (önden): kulaklar, yanak püskülleri, maske; gözler açık ya da kapalı (--open / --closed) -->
+    <symbol id="head" viewBox="0 0 100 100" overflow="visible">
+      <path fill="var(--fur)" d="M50 93 C46 92 41 86 37 81 C31 76 24 72 17 67 L23 63 C17 61 12 57 8 52 C14 51 18 49 20 45 C17 40 15 34 14 26 C13 18 14 10 17 3 C24 8 32 15 39 22 C43 21 47 20.5 50 20.5 C53 20.5 57 21 61 22 C68 15 76 8 83 3 C86 10 87 18 86 26 C85 34 83 40 80 45 C82 49 86 51 92 52 C88 57 83 61 77 63 L83 67 C76 72 69 76 63 81 C59 86 54 92 50 93 Z"/>
+      <path fill="var(--fur2)" d="M39 22 C43 21 47 20.5 50 20.5 C53 20.5 57 21 61 22 C57 28 53 34 50 42 C47 34 43 28 39 22 Z"/>
+      <path fill="var(--ear)" d="M19.5 10 C24.5 15 30 20 34.5 24.5 C29 27 25 30 22 34 C19.5 27 18.5 18 19.5 10 Z"/>
+      <path fill="var(--ear)" d="M80.5 10 C75.5 15 70 20 65.5 24.5 C71 27 75 30 78 34 C80.5 27 81.5 18 80.5 10 Z"/>
+      <path fill="var(--mask)" d="M46.2 57 C43 53.5 39 51.6 34 51.3 C28 51 21 51.6 15.5 53 C19 56.5 23 59 28 60.8 L24.5 64 C31 68 38 73 43 79 C45.5 82 47 85 48 87 C47.6 79 46.8 68 46.5 62 C46.4 60 46.3 58.5 46.2 57 Z"/>
+      <path fill="var(--mask)" d="M53.8 57 C57 53.5 61 51.6 66 51.3 C72 51 79 51.6 84.5 53 C81 56.5 77 59 72 60.8 L75.5 64 C69 68 62 73 57 79 C54.5 82 53 85 52 87 C52.4 79 53.2 68 53.5 62 C53.6 60 53.7 58.5 53.8 57 Z"/>
+      <g style="visibility:var(--open,visible)">
+        <ellipse cx="37.6" cy="45.6" rx="5.6" ry="3.7" transform="rotate(-14 37.6 45.6)" fill="var(--eye)"/>
+        <ellipse cx="62.4" cy="45.6" rx="5.6" ry="3.7" transform="rotate(14 62.4 45.6)" fill="var(--eye)"/>
+        <circle cx="39.3" cy="44.3" r="1.15" fill="var(--glint)"/>
+        <circle cx="64.1" cy="44.3" r="1.15" fill="var(--glint)"/>
+      </g>
+      <g style="visibility:var(--closed,hidden)" fill="none" stroke="var(--lid)" stroke-width="2.3" stroke-linecap="round">
+        <path d="M31.8 44.6 Q37.4 49.6 43.4 46.6"/>
+        <path d="M68.2 44.6 Q62.6 49.6 56.6 46.6"/>
+      </g>
+      <path fill="var(--nose)" d="M45.2 86.6 C48 85.4 52 85.4 54.8 86.6 C54.2 89.6 52.3 92 50 93 C47.7 92 45.8 89.6 45.2 86.6 Z"/>
+    </symbol>
+    <!-- oturan tilki: gövde, göğüs, çoraplı ön bacaklar, partnerine yatık baş -->
+    <symbol id="fox" viewBox="0 0 120 210" overflow="visible">
+      <path fill="var(--fur)" d="M28 70 C22 92 18 108 17 124 C16 140 7 152 7 170 C7 189 25 199 50 199 C75 199 93 189 93 170 C93 152 84 140 83 124 C82 108 78 92 72 70 Z"/>
+      <path fill="var(--mask)" d="M50 84 C40 90 35 108 36.5 126 C37.5 137 43 143 50 147 C57 143 62.5 137 63.5 126 C65 108 60 90 50 84 Z"/>
+      <rect x="37" y="134" width="10" height="60" rx="5" fill="var(--fur2)"/>
+      <rect x="53" y="134" width="10" height="60" rx="5" fill="var(--fur2)"/>
+      <path fill="var(--sock)" d="M37 173 C39.5 170.5 44.5 170.5 47 173 L47 189 A5 5 0 0 1 37 189 Z"/>
+      <path fill="var(--sock)" d="M53 173 C55.5 170.5 60.5 170.5 63 173 L63 189 A5 5 0 0 1 53 189 Z"/>
+      <g transform="rotate(10 50 80)"><use href="#head" width="100" height="100"/></g>
+    </symbol>
+    <!-- kuyruk: yerde, patilerin önünden ortaya kıvrılır; ucu beyaz -->
+    <clipPath id="tailclip"><path d="M16 168 C4 170 -6 178 -6 190 C-6 202 6 209 26 209 C48 210 68 207 83 201 C91 197 95 190 91 186 C87 182 80 184 74 187 C60 190 44 191 34 189 C24 187 18 182 16 175 C15.5 172 15.6 170 16 168 Z"/></clipPath>
+    <symbol id="tail" viewBox="0 0 120 210" overflow="visible">
+      <g clip-path="url(#tailclip)">
+        <rect x="-20" y="110" width="140" height="110" fill="var(--tail)"/>
+        <path fill="var(--tail2)" d="M-20 199 C0 210 40 211 80 205 L80 220 L-20 220 Z"/>
+        <ellipse cx="87" cy="194" rx="10.5" ry="9.5" fill="var(--mask)"/>
+      </g>
+    </symbol>
+    <!-- logo: iki baş, birbirine yaslanmış -->
+    <symbol id="foxes" viewBox="-2 -4 192 104">
+      <g class="fb" transform="translate(186 0) scale(-1 1) rotate(10 50 80)"><use href="#head" width="100" height="100"/></g>
+      <g class="fa" transform="translate(4 0) rotate(10 50 80)"><use href="#head" width="100" height="100"/></g>
+    </symbol>
+    <path id="star4" d="M7 0Q7 7 14 7Q7 7 7 14Q7 7 0 7Q7 7 7 0Z"/>
+  </defs>
 </svg>
 
 <header class="wrap top">
   <a class="brand" href="./" aria-label="Two Fox Labs ana sayfa">
-    <svg aria-hidden="true"><use href="#foxes"/></svg>
+    <svg viewBox="-2 -4 192 104" aria-hidden="true"><use href="#foxes"/></svg>
     <span>Two Fox Labs</span>
   </a>
   <nav aria-label="Sayfa içi">
     <a href="#couplecup">CoupleCup</a>
-    <a class="hide-s" href="#ilkeler">İlkeler</a>
-    <a href="#iletisim">İletişim</a>
+    <a href="#sss">SSS</a>
+    <a class="hide-s" href="#iletisim">İletişim</a>
   </nav>
 </header>
 
@@ -229,9 +348,23 @@
 
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow"><b>Bağımsız stüdyo</b> · Gaziantep, Türkiye</p>
-    <h1>Birbirine yakın duranlar için <em>uygulamalar.</em></h1>
-    <p class="lead">Two Fox Labs küçük bir stüdyo. Az sayıda uygulama yapıyor, her birini uzun süre elden geçiriyoruz. Reklam göstermiyoruz, kimsenin verisini satmıyoruz.</p>
+    <div>
+      <p class="eyebrow"><b>Bağımsız stüdyo</b> · Gaziantep, Türkiye</p>
+      <h1>Birbirine yakın duranlar için <em>uygulamalar.</em></h1>
+      <p class="lead">Two Fox Labs küçük bir stüdyo. Az sayıda uygulama yapıyoruz ve her birini uzun süre elden geçiriyoruz. Reklam göstermiyoruz, kimsenin verisini satmıyoruz.</p>
+      <a class="hero-link" href="#couplecup">İlk uygulamamız: CoupleCup <span aria-hidden="true">→</span></a>
+    </div>
+    <svg class="duo" viewBox="-30 -40 260 270" role="img" aria-label="Başlarını birbirine yaslamış, gözleri kapalı iki tilki; biri kızıl, biri koyu renkli. Kuyrukları önlerinde birbirine değiyor, üstlerinde üç yıldız var." style="--open:hidden;--closed:visible">
+      <circle class="moon" cx="96" cy="84" r="98"/>
+      <use class="star twinkle" href="#star4" transform="translate(179 -14) scale(1.57)"/>
+      <use class="star twinkle t2" href="#star4" transform="translate(203 20) scale(.72)"/>
+      <use class="star twinkle t3" href="#star4" transform="translate(158 -30) scale(.86)"/>
+      <ellipse class="ground" cx="95" cy="205" rx="118" ry="9"/>
+      <g class="fb" transform="translate(186 0) scale(-1 1)"><use href="#fox" width="120" height="210"/></g>
+      <g class="fa" transform="translate(4 0)"><use href="#fox" width="120" height="210"/></g>
+      <g class="fb" transform="translate(186 0) scale(-1 1)"><use href="#tail" width="120" height="210"/></g>
+      <g class="fa" transform="translate(4 0)"><use href="#tail" width="120" height="210"/></g>
+    </svg>
   </div>
 </section>
 
@@ -263,67 +396,165 @@
       </svg>
       <div>
         <h2>CoupleCup</h2>
-        <div class="status">Geliştiriliyor · Yakında Google Play’de</div>
+        <div class="status">Geliştiriliyor · Önce Android, sonra iPhone</div>
       </div>
     </div>
 
     <p class="app-intro">İki kişilik ortak bir defter. Anılarınızı birlikte yazarsınız, birbirinize belirlediğiniz an açılan mektuplar bırakırsınız, her gün aynı soruya ayrı ayrı cevap verirsiniz.</p>
 
     <figure class="stage">
-      <svg class="spark s1" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 0Q7 7 14 7Q7 7 7 14Q7 7 0 7Q7 7 7 0Z"/></svg>
-      <svg class="spark s2" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 0Q7 7 14 7Q7 7 7 14Q7 7 0 7Q7 7 7 0Z"/></svg>
-      <svg class="spark s3" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 0Q7 7 14 7Q7 7 7 14Q7 7 0 7Q7 7 7 0Z"/></svg>
+      <svg class="spark s1" viewBox="0 0 14 14" aria-hidden="true"><use href="#star4"/></svg>
+      <svg class="spark s2" viewBox="0 0 14 14" aria-hidden="true"><use href="#star4"/></svg>
+      <svg class="spark s3" viewBox="0 0 14 14" aria-hidden="true"><use href="#star4"/></svg>
       <div class="phone l"><picture><source srcset="img/letters-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/letters.webp" width="600" height="1200" loading="lazy" alt="Mektuplar ekranı: biri yolda, biri mühürlü iki mektup."></picture></div>
       <div class="phone r"><picture><source srcset="img/memories-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/memories.webp" width="600" height="1200" loading="lazy" alt="Anılar ekranı: aylara göre sıralanmış anılar."></picture></div>
       <div class="phone c"><picture><source srcset="img/home-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/home.webp" width="600" height="1200" alt="Ana sayfa: 612 gündür birlikte sayacı ve anılar, mektuplar, özel günler, planlar kartları."></picture></div>
     </figure>
     <p class="stage-note">Uygulamanın gerçek ekranları. İsimler ve içerik örnektir.</p>
 
-    <div class="app-body">
+    <ul class="features">
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 8.4a3.5 3.5 0 0 1 6.9 1c0 2.4-3.4 2.6-3.4 5"/><path d="M12 19.4v.6"/></svg>
+        <h4>Günün sorusu</h4>
+        <p>Her gün yeni bir soru. Partnerinizin cevabı, siz kendi cevabınızı yazınca açılır.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.6 7l8.4 6 8.4-6"/></svg>
+        <h4>Mühürlü mektuplar</h4>
+        <p>Yazıp mühürlersiniz; seçtiğiniz anda ya da özel bir günde açılır.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3.5" width="14.5" height="17" rx="2.5"/><path d="M5 8h-1.5M5 12h-1.5M5 16h-1.5"/><path d="M12.2 15.6s-2.8-1.8-2.8-3.6a1.6 1.6 0 0 1 2.8-1 1.6 1.6 0 0 1 2.8 1c0 1.8-2.8 3.6-2.8 3.6z"/></svg>
+        <h4>Anılar</h4>
+        <p>İkinizin birlikte yazdığı bir anı defteri. İsterseniz haritada.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M12 18s-2.7-1.8-2.7-3.5a1.55 1.55 0 0 1 2.7-1 1.55 1.55 0 0 1 2.7 1c0 1.7-2.7 3.5-2.7 3.5z"/></svg>
+        <h4>Özel günler</h4>
+        <p>Yıldönümleri ve doğum günleri; vaktinde hatırlatır.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.9a6 6 0 0 1 6 6c0 4.1-6 8.6-6 8.6S6 13 6 8.9a6 6 0 0 1 6-6z"/><path class="solid" d="M12 12.2s-2.4-1.6-2.4-3.1a1.35 1.35 0 0 1 2.4-.85 1.35 1.35 0 0 1 2.4.85c0 1.5-2.4 3.1-2.4 3.1z"/><path d="M7.5 19.4a4.5 1.9 0 1 0 9 0 4.5 1.9 0 1 0-9 0" stroke-dasharray="3.4 3"/></svg>
+        <h4>Buluşmalar</h4>
+        <p>Bir sonraki buluşmayı birlikte planlayın, geri sayımı izleyin.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5h11M9 12h11M9 17.5h7"/><path d="M3.5 6.2l1.4 1.4 2.3-2.6M3.5 11.7l1.4 1.4 2.3-2.6"/></svg>
+        <h4>Planlar ve çark</h4>
+        <p>Birlikte yapılacaklar listeleri. Karar veremediğiniz akşamlarda çark seçsin.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.8-7.5-9.8A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 3.3c0 5-7.5 9.8-7.5 9.8z"/></svg>
+        <h4>Beğendiklerim</h4>
+        <p>Film, yer, yemek… İkiniz de beğenince eşleşir.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.8" r="7.8"/><path d="M12 13.8V9.6M9.6 2.6h4.8M12 2.6V6"/></svg>
+        <h4>Kronometre</h4>
+        <p>Birlikte geçirdiğiniz zamanı sayar.</p>
+      </li>
+    </ul>
+
+    <div class="rules">
+      <div>
+        <h3>Bazı şeyler zamanı gelince açılır.</h3>
+        <p>Günün sorusunda partnerinizin cevabı, siz kendi cevabınızı yazınca açılır. Mühürlü bir mektubun ise başlığı bile açılış anına kadar görünmez.</p>
+        <p>Bu kurallar ekranda saklanarak işlemiyor, sunucuda uygulanıyor: zamanı gelmeden o yazı telefonunuza hiç inmiyor.</p>
+        <p class="fine">Günün sorusu gün bitince de açılır; o güne artık yazılamadığı için kimse önceden görmüş olmaz.</p>
+      </div>
       <div class="scene" aria-hidden="true">
         <div class="note q">
           <p class="kicker">Günün sorusu</p>
           <p class="qtext">Çocukken en sevdiğin hafta sonu nasıl geçerdi?</p>
-          <div class="row"><span class="av" style="background:#2F9BD8">E</span><span class="who">Sen cevapladın</span></div>
-          <div class="row"><span class="av" style="background:#C8552B">A</span><span class="blur"></span></div>
+          <div class="row"><span class="av">A</span><span class="who">Sen cevapladın</span></div>
+          <div class="row"><span class="av">C</span><span class="blur"></span></div>
         </div>
+        <p class="hand h1"><svg viewBox="0 0 46 34"><path d="M42 31 C 30 31, 16 26, 9 15 C 7 11, 6 8, 5.5 4"/><path d="M1.6 10.2 L 5.4 3.4 L 10.6 8.6"/></svg><span>sen yazınca açılır</span></p>
         <div class="note l">
           <span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
           <p class="kicker">Mühürlü mektup</p>
           <p class="ltitle">Başlık açılışta görünür</p>
-          <p class="lmeta">Açılış: 14 Şubat · 09:00</p>
+          <p class="lmeta">Can → Sen · Açılış: 14 Eki · 09:00</p>
           <div class="lines"><i></i><i></i><i></i></div>
         </div>
+        <p class="hand h2"><svg viewBox="0 0 46 34"><path d="M42 31 C 30 31, 16 26, 9 15 C 7 11, 6 8, 5.5 4"/><path d="M1.6 10.2 L 5.4 3.4 L 10.6 8.6"/></svg><span>açılana kadar kapalı</span></p>
       </div>
+    </div>
 
+    <aside class="beta" aria-labelledby="beta-title">
+      <span class="droid" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2.8" width="12" height="18.4" rx="2.6"/><path d="M10.4 18h3.2"/></svg></span>
       <div>
-        <dl class="features">
-          <div><dt>Günün sorusu</dt><dd>Her gün yeni bir soru. Partnerinin cevabı, sen kendi cevabını yazınca açılır.</dd></div>
-          <div><dt>Mühürlü mektuplar</dt><dd>Yazarsın, mühürlersin; seçtiğin gün ya da özel bir günde açılır. O ana kadar başlığı bile görünmez.</dd></div>
-          <div><dt>Anılar</dt><dd>Fotoğraf yerine kelimeler. İkinizin de yazıp düzenleyebildiği bir anı defteri, istersen haritada.</dd></div>
-          <div><dt>Planlar ve çark</dt><dd>Birlikte yapılacaklar listeleri. Karar veremediğiniz akşamlarda çark seçsin.</dd></div>
-          <div><dt>Özel günler</dt><dd>Yıldönümleri, doğum günleri ve bir sonraki buluşmaya kalan süre.</dd></div>
-        </dl>
-        <p class="app-links"><a href="gizlilik.html">CoupleCup Gizlilik Politikası</a></p>
+        <h3 id="beta-title">Erken denemek ister misiniz?</h3>
+        <p>Yayından önce CoupleCup’ı Android’de kapalı testle deneyeceğiz ve birkaç çift arıyoruz. İkiniz de Android telefon kullanıyorsanız yazın, Google hesaplarınızla test listesine ekleyelim.</p>
+        <p class="fine">E-posta adreslerinizi yalnızca test daveti için kullanırız.</p>
       </div>
+      <a class="btn" href="mailto:twofoxlabs@gmail.com?subject=CoupleCup%20kapal%C4%B1%20test&amp;body=Merhaba%2C%0A%0ACoupleCup%20kapal%C4%B1%20testine%20kat%C4%B1lmak%20istiyoruz.%0A%0AGoogle%20hesab%C4%B1m%C4%B1n%20e-postas%C4%B1%3A%0APartnerimin%20Google%20hesab%C4%B1n%C4%B1n%20e-postas%C4%B1%3A%0A%0A%C4%B0kimiz%20de%20Android%20kullan%C4%B1yoruz.%0A">Kapalı teste katıl <span aria-hidden="true">→</span></a>
+    </aside>
+  </div>
+</section>
+
+<section class="section" id="sss">
+  <div class="wrap faq-grid">
+    <div class="faq-side">
+      <p class="label"><span class="n">02</span> Sık sorulanlar</p>
+      <h2>Aklınıza takılanlar</h2>
+      <p>Cevabını burada bulamadığınız bir şey varsa <a href="#iletisim">bize yazın</a>. Ayrıntıların hepsi <a href="gizlilik.html">gizlilik politikasında</a>.</p>
+    </div>
+    <div>
+      <details>
+        <summary>Ücretsiz mi?</summary>
+        <p>Evet. CoupleCup’ı kullanmak ücretsiz. Reklam da, uygulama içi satın alma da yok.</p>
+      </details>
+      <details>
+        <summary>iPhone’da var mı?</summary>
+        <p>Henüz değil. CoupleCup önce Android’de çıkacak, iPhone sürümü ondan sonra gelecek. Tarihi belli olunca burada yazacağız.</p>
+      </details>
+      <details>
+        <summary>Neden fotoğraf yok?</summary>
+        <p>Bilerek. CoupleCup bir albüm değil, bir defter. Fotoğraflarınız zaten telefonunuzda duruyor; burada o günün neden güzel olduğunu yazıyorsunuz. Bir de en özel fotoğraflarınız hiçbir sunucuya yüklenmemiş oluyor.</p>
+      </details>
+      <details>
+        <summary>Partnerim mühürlü mektubumu önceden okuyabilir mi?</summary>
+        <p>Hayır. Mühürlü bir mektubun başlığı da metni de açılış anına kadar partnerinizin telefonuna hiç gönderilmez. Bu kural uygulamada değil, sunucuda işler. Günün sorusu da böyle: partnerinizin cevabı, siz kendi cevabınızı yazana ya da gün bitene kadar açılmaz.</p>
+      </details>
+      <details>
+        <summary>Yazdıklarımızı kim görebilir?</summary>
+        <p>Uygulama üzerinden yalnızca siz ve partneriniz. Verileriniz şifreli bağlantıyla aktarılır, Almanya’daki sunucularda şifreli diskte saklanır. Uçtan uca şifreleme kullanmıyoruz; bu yüzden teknik bakım gerektiğinde sistemin yöneticisi verilere erişebilir. Bu erişim günlük işlerde kullanılmaz.</p>
+      </details>
+      <details>
+        <summary>Nasıl eşleşiyoruz?</summary>
+        <p>Biriniz uygulamada bir davet kodu oluşturur, diğeriniz o kodu girer. Kod 24 saat geçerlidir ve tek kullanımlıktır; süresi dolarsa tek dokunuşla yenilenir.</p>
+      </details>
+      <details>
+        <summary>Partnerim olmadan deneyebilir miyim?</summary>
+        <p>Evet. Eşleşme ekranında “Eşleşmeden dene”ye dokunursanız örnek içeriklerle dolu bir demo alanı açılır. Demodan çıkınca içindeki her şey silinir.</p>
+      </details>
+      <details>
+        <summary>Ayrılırsak ne olur?</summary>
+        <p>Eşleşmeyi biriniz sonlandırdığında ortak alan kapanır ama hemen silinmez, 6 ay kapalı bekler. Bu sürede ikiniz yeniden eşleşirseniz kaldığınız yerden devam edersiniz. 6 ay dolunca her şey kalıcı olarak silinir. Bu arada yazdıklarınızın bir kopyasını alabilirsiniz.</p>
+      </details>
+      <details>
+        <summary>Hesabımı nasıl silerim?</summary>
+        <p>Uygulamada Ayarlar → Hesabı sil. Uygulamaya erişemiyorsanız kayıtlı e-postanızdan <a href="mailto:twofoxlabs@gmail.com">twofoxlabs@gmail.com</a> adresine yazmanız yeterli. Neyin hemen silindiği, neyin ne kadar saklandığı <a href="gizlilik.html#hesap-silme">Hesap silme</a> bölümünde.</p>
+      </details>
     </div>
   </div>
 </section>
 
 <section class="section" id="ilkeler">
   <div class="wrap">
-    <p class="label"><span class="n">02</span> Nasıl çalışıyoruz</p>
+    <p class="label"><span class="n">03</span> Nasıl çalışıyoruz</p>
     <ul class="principles">
       <li>
-        <h3><small>i.</small>Reklam yok.</h3>
+        <h4><small>i.</small>Reklam yok.</h4>
         <p>Uygulamalarımızda reklam göstermiyoruz, reklam ağı kullanmıyoruz, kimsenin verisini satmıyoruz.</p>
       </li>
       <li>
-        <h3><small>ii.</small>Veri sizin.</h3>
+        <h4><small>ii.</small>Veri sizin.</h4>
         <p>Yazdıklarınızın kopyasını istediğiniz an alabilir, hesabınızı uygulamanın içinden silebilirsiniz.</p>
       </li>
       <li>
-        <h3><small>iii.</small>Türkçe, baştan.</h3>
+        <h4><small>iii.</small>Türkçe, baştan.</h4>
         <p>Uygulamalarımızı sonradan çevirmiyoruz; Türkçe düşünüp Türkçe yazıyoruz.</p>
       </li>
     </ul>
@@ -341,8 +572,11 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Two Fox Labs · Yunus Emre Suna, Gaziantep</span>
-    <a href="gizlilik.html">Gizlilik Politikası</a>
+    <span class="who"><svg viewBox="-2 -4 192 104" aria-hidden="true"><use href="#foxes"/></svg>© 2026 Two Fox Labs · Yunus Emre Suna, Gaziantep</span>
+    <nav aria-label="Yasal">
+      <a href="gizlilik.html">Gizlilik Politikası</a>
+      <a href="gizlilik.html#hesap-silme">Hesap silme</a>
+    </nav>
   </div>
 </footer>
 
