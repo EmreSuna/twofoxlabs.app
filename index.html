@@ -47,7 +47,7 @@
     --paper: #F5F0E8; --card: #FCFAF6; --ink: #1E1A16; --body: #3A332C; --muted: #6E655B; --line: #DDD3C5;
     --fox: #C8552B; --fox-text: #A9441E; --btn: #A9441E; --btn-text: #FFFFFF;
     --ocean: #2F9BD8; --ocean-deep: #1A6A9E; --stage: #DCEAF3; --bezel: #1E1A16; --spark: #FFFFFF;
-    --moon: #ECE2D2; --star: #D9A441; --ground: #E6DBCB; --avatar: #FBE3EC; --avatar-text: #C2255C;
+    --moon: #ECE2D2; --star: #D9A441; --ground: #E6DBCB; --avatar: #FBE3EC; --avatar-text: #C2255C; --screen: #FFFFFF; --screen-ink: #1E1A16;
     --shadow: 0 1px 0 rgba(30, 26, 22, .04), 0 12px 32px -12px rgba(30, 26, 22, .22);
     --serif: "Fraunces", Georgia, "Times New Roman", serif;
     --sans: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -57,7 +57,7 @@
       --paper: #171412; --card: #211D1A; --ink: #F1EAE0; --body: #D6CEC3; --muted: #A1978B; --line: #36302A;
       --fox: #E07A4C; --fox-text: #EE9670; --btn: #E07A4C; --btn-text: #171412;
       --ocean-deep: #7CC3EC; --stage: #16212B; --bezel: #050404; --spark: #2F9BD8;
-      --moon: #221D19; --star: #E8C27A; --ground: #0F0D0B; --avatar: #3A2530; --avatar-text: #F3A6C4;
+      --moon: #221D19; --star: #E8C27A; --ground: #0F0D0B; --avatar: #3A2530; --avatar-text: #F3A6C4; --screen: #141316; --screen-ink: #F4F4F5;
       --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 36px -14px rgba(0, 0, 0, .7);
     }
   }
@@ -128,11 +128,18 @@
   .stage { position: relative; height: 560px; margin: 56px 0 0; overflow: hidden; border-radius: 28px; background: var(--stage); }
   .phone { position: absolute; left: 50%; width: 270px; padding: 9px; border-radius: 44px; background: var(--bezel);
            box-shadow: 0 30px 60px -20px rgba(16, 40, 60, .45), inset 0 0 0 1.5px rgba(255, 255, 255, .08); }
-  .phone picture { display: block; }
-  .phone img { display: block; width: 100%; height: auto; border-radius: 35px; }
+  .phone { container-type: inline-size; }
+  .scr { background: var(--screen); border-radius: 35px; overflow: hidden; }
+  .scr picture { display: block; }
+  .scr img { display: block; width: 100%; height: auto; }
+  /* durum çubuğu: tarayıcıdan alınan ekranlarda yok, gerçek telefondaki gibi üstte durur */
+  .sb { position: relative; display: flex; justify-content: space-between; align-items: center; height: 11cqw; padding: 1.6cqw 8cqw 0 9cqw;
+        font: 600 4.6cqw/1 var(--sans); color: var(--screen-ink); letter-spacing: .01em; }
+  .sb svg { width: 19cqw; height: 5cqw; fill: var(--screen-ink); stroke: var(--screen-ink); }
+  .sb .cam { position: absolute; left: 50%; top: 3.4cqw; width: 4.4cqw; height: 4.4cqw; margin-left: -2.2cqw; border-radius: 50%; background: #0B0A0A; }
   .phone.c { z-index: 2; bottom: -100px; transform: translateX(-50%); }
-  .phone.l { bottom: -175px; transform: translateX(-50%) translateX(-250px) rotate(-7deg); }
-  .phone.r { bottom: -175px; transform: translateX(-50%) translateX(250px) rotate(7deg); }
+  .phone.l { bottom: -175px; transform: translateX(-50%) translateX(-250px) rotate(-6deg); }
+  .phone.r { bottom: -175px; transform: translateX(-50%) translateX(250px) rotate(6deg); }
   .spark { position: absolute; fill: var(--spark); }
   .spark.s1 { width: 34px; top: 44px; left: 9%; } .spark.s2 { width: 18px; top: 112px; left: 15%; } .spark.s3 { width: 26px; top: 64px; right: 11%; }
   .stage-note { margin: 14px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
@@ -237,10 +244,10 @@
     .principles { grid-template-columns: 1fr; gap: 40px; }
     .stage { height: 500px; }
     .phone { width: 230px; border-radius: 38px; padding: 8px; }
-    .phone img { border-radius: 30px; }
+    .scr { border-radius: 30px; }
     .phone.c { bottom: -110px; }
-    .phone.l { bottom: -170px; transform: translateX(-50%) translateX(-190px) rotate(-7deg); }
-    .phone.r { bottom: -170px; transform: translateX(-50%) translateX(190px) rotate(7deg); }
+    .phone.l { bottom: -170px; transform: translateX(-50%) translateX(-190px) rotate(-6deg); }
+    .phone.r { bottom: -170px; transform: translateX(-50%) translateX(190px) rotate(6deg); }
   }
   @media (max-width: 560px) {
     body { font-size: 16px; }
@@ -261,7 +268,7 @@
     .btn { justify-content: center; }
     .stage { height: 420px; margin-top: 40px; border-radius: 22px; }
     .phone { width: 190px; border-radius: 32px; padding: 7px; }
-    .phone img { border-radius: 25px; }
+    .scr { border-radius: 25px; }
     .phone.c { bottom: -80px; }
     .phone.l { bottom: -150px; transform: translateX(-50%) translateX(-118px) rotate(-8deg); }
     .phone.r { bottom: -150px; transform: translateX(-50%) translateX(118px) rotate(8deg); }
@@ -406,9 +413,9 @@
       <svg class="spark s1" viewBox="0 0 14 14" aria-hidden="true"><use href="#star4"/></svg>
       <svg class="spark s2" viewBox="0 0 14 14" aria-hidden="true"><use href="#star4"/></svg>
       <svg class="spark s3" viewBox="0 0 14 14" aria-hidden="true"><use href="#star4"/></svg>
-      <div class="phone l"><picture><source srcset="img/letters-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/letters.webp" width="600" height="1200" loading="lazy" alt="Mektuplar ekranı: biri yolda, biri mühürlü iki mektup."></picture></div>
-      <div class="phone r"><picture><source srcset="img/memories-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/memories.webp" width="600" height="1200" loading="lazy" alt="Anılar ekranı: aylara göre sıralanmış anılar."></picture></div>
-      <div class="phone c"><picture><source srcset="img/home-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/home.webp" width="600" height="1200" alt="Ana sayfa: 612 gündür birlikte sayacı ve anılar, mektuplar, özel günler, planlar kartları."></picture></div>
+      <div class="phone l"><div class="scr"><div class="sb" aria-hidden="true"><span>09:41</span><i class="cam"></i><svg viewBox="0 0 54 14"><rect x="1" y="9" width="2.6" height="4" rx=".8"/><rect x="5.2" y="6.5" width="2.6" height="6.5" rx=".8"/><rect x="9.4" y="4" width="2.6" height="9" rx=".8"/><rect x="13.6" y="1.5" width="2.6" height="11.5" rx=".8"/><path d="M22 6.2a8 8 0 0 1 10.6 0M24.2 8.7a4.8 4.8 0 0 1 6.2 0" fill="none" stroke-width="1.6" stroke-linecap="round"/><circle cx="27.3" cy="11.3" r="1.3"/><rect x="37" y="2.5" width="14" height="9" rx="2.4" fill="none" stroke-width="1.2"/><rect x="38.8" y="4.3" width="9.6" height="5.4" rx="1.2"/><rect x="51.8" y="5.4" width="1.4" height="3.2" rx=".6"/></svg></div><picture><source srcset="img/letters-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/letters.webp" width="600" height="1200" loading="lazy" alt="Mektuplar ekranı: biri yolda, biri mühürlü iki mektup."></picture></div></div>
+      <div class="phone r"><div class="scr"><div class="sb" aria-hidden="true"><span>09:41</span><i class="cam"></i><svg viewBox="0 0 54 14"><rect x="1" y="9" width="2.6" height="4" rx=".8"/><rect x="5.2" y="6.5" width="2.6" height="6.5" rx=".8"/><rect x="9.4" y="4" width="2.6" height="9" rx=".8"/><rect x="13.6" y="1.5" width="2.6" height="11.5" rx=".8"/><path d="M22 6.2a8 8 0 0 1 10.6 0M24.2 8.7a4.8 4.8 0 0 1 6.2 0" fill="none" stroke-width="1.6" stroke-linecap="round"/><circle cx="27.3" cy="11.3" r="1.3"/><rect x="37" y="2.5" width="14" height="9" rx="2.4" fill="none" stroke-width="1.2"/><rect x="38.8" y="4.3" width="9.6" height="5.4" rx="1.2"/><rect x="51.8" y="5.4" width="1.4" height="3.2" rx=".6"/></svg></div><picture><source srcset="img/memories-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/memories.webp" width="600" height="1200" loading="lazy" alt="Anılar ekranı: aylara göre sıralanmış anılar."></picture></div></div>
+      <div class="phone c"><div class="scr"><div class="sb" aria-hidden="true"><span>09:41</span><i class="cam"></i><svg viewBox="0 0 54 14"><rect x="1" y="9" width="2.6" height="4" rx=".8"/><rect x="5.2" y="6.5" width="2.6" height="6.5" rx=".8"/><rect x="9.4" y="4" width="2.6" height="9" rx=".8"/><rect x="13.6" y="1.5" width="2.6" height="11.5" rx=".8"/><path d="M22 6.2a8 8 0 0 1 10.6 0M24.2 8.7a4.8 4.8 0 0 1 6.2 0" fill="none" stroke-width="1.6" stroke-linecap="round"/><circle cx="27.3" cy="11.3" r="1.3"/><rect x="37" y="2.5" width="14" height="9" rx="2.4" fill="none" stroke-width="1.2"/><rect x="38.8" y="4.3" width="9.6" height="5.4" rx="1.2"/><rect x="51.8" y="5.4" width="1.4" height="3.2" rx=".6"/></svg></div><picture><source srcset="img/home-dark.webp" media="(prefers-color-scheme: dark)"><img src="img/home.webp" width="600" height="1200" alt="Ana sayfa: 612 gündür birlikte sayacı ve anılar, mektuplar, özel günler, planlar kartları."></picture></div></div>
     </figure>
     <p class="stage-note">Uygulamanın gerçek ekranları. İsimler ve içerik örnektir.</p>
 
