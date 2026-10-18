@@ -129,6 +129,7 @@
   <li>E-posta adresiniz ve şifreniz. Şifre düz metin olarak saklanmaz, yalnızca geri çevrilemez özeti (hash) tutulur.</li>
   <li>Hesabınızı doğrulamak ve şifrenizi sıfırlamak için e-postanıza gönderilen tek kullanımlık kodlar.</li>
   <li>Google ile giriş yaparsanız: Google’ın bize ilettiği e-posta adresiniz ve Google hesap kimliğiniz. Google bu sırada adınızı ve profil fotoğrafınızın bağlantısını da gönderir; bunlar giriş kaydında durur, uygulamada kullanılmaz, partnerinize gösterilmez. Google hesabınızın şifresini görmeyiz. Bu durumda uygulamada ayrıca şifre tutulmaz.</li>
+  <li>Apple ile giriş yaparsanız (iPhone): Apple’ın bize ilettiği e-posta adresiniz ve Apple kimliğinize bağlı hesap kimliği. E-postanızı gizlemeyi seçerseniz Apple bize sizin yerinize ona yönlenen özel bir adres verir. İlk girişte Apple adınızı da gönderir; ad yalnızca profilinizdeki isim alanına öneri olarak yazılır, değiştirebilirsiniz. Apple Kimliğinizin şifresini görmeyiz. Hesabınızı sildiğinizde CoupleCup’ın Apple Kimliğinizle bağı da kaldırılır.</li>
   <li>Kayıt, giriş, kod isteme ve şifre sıfırlama sırasında otomatik saldırıları önlemek için bir güvenlik kontrolü (Cloudflare Turnstile) çalışır. Bu kontrol sırasında IP adresiniz ve cihazınıza/tarayıcınıza ait teknik bilgiler Cloudflare’e iletilir. Bize yalnızca kontrolün geçip geçmediği bildirilir.</li>
 </ul>
 
@@ -228,11 +229,13 @@
   <tbody>
     <tr><td>Supabase</td><td>Veritabanı, hesap ve giriş altyapısı</td><td>Bu politikadaki sunucu taraflı tüm veriler</td><td>Avrupa Birliği (Almanya)</td></tr>
     <tr><td>Google (Google ile giriş)</td><td>Google hesabınızla giriş yapmanız, yalnızca bu yolu seçerseniz</td><td>Google hesap kimliğiniz, e-posta adresiniz, adınız ve profil fotoğrafı bağlantınız; Google’ın kendi kuralları geçerlidir</td><td>ABD ve küresel</td></tr>
+    <tr><td>Apple (Apple ile giriş)</td><td>Apple Kimliğinizle giriş yapmanız (iPhone), yalnızca bu yolu seçerseniz</td><td>Apple kimliğinize bağlı hesap kimliği, e-posta adresiniz ya da Apple’ın özel yönlendirme adresi, ilk girişte adınız; Apple’ın kendi kuralları geçerlidir</td><td>ABD ve küresel</td></tr>
     <tr><td>Resend</td><td>Doğrulama ve şifre sıfırlama e-postaları</td><td>E-posta adresiniz ve tek kullanımlık kod</td><td>ABD</td></tr>
     <tr><td>Cloudflare (Turnstile)</td><td>Kayıt, giriş ve şifre sıfırlamada otomatik saldırılara karşı güvenlik kontrolü</td><td>IP adresi, cihaz ve tarayıcı bilgileri</td><td>ABD ve küresel</td></tr>
     <tr><td>Expo (Expo Push Service)</td><td>Bildirimlerin iletilmesi</td><td>Bildirim anahtarı, bildirimin başlığı ve kısa metni</td><td>ABD</td></tr>
     <tr><td>Google (Firebase Cloud Messaging) · Apple (APNs)</td><td>Bildirimin telefonunuza ulaştırılması</td><td>Bildirim anahtarı ve bildirim içeriği</td><td>ABD ve küresel</td></tr>
     <tr><td>Google (Maps SDK)</td><td>Buluşma ya da anı yeri seçerken ve anı haritasında haritanın gösterilmesi (Android)</td><td>Haritada gezindiğiniz bölge, konum izni verdiyseniz haritada gösterilen konumunuz; Google’ın kendi kuralları geçerlidir</td><td>ABD ve küresel</td></tr>
+    <tr><td>Apple (Apple Haritalar)</td><td>Buluşma ya da anı yeri seçerken ve anı haritasında haritanın gösterilmesi (iPhone)</td><td>Haritada gezindiğiniz bölge, konum izni verdiyseniz haritada gösterilen konumunuz; Apple’ın kendi kuralları geçerlidir</td><td>ABD ve küresel</td></tr>
     <tr><td>Google (Places API)</td><td>Haritada yer arama</td><td>Arama metni ve haritanın o an gösterdiği bölge. İsteği sunucumuz iletir, hesap bilgileriniz Google’a gitmez</td><td>ABD ve küresel</td></tr>
     <tr><td>Google (Firebase Analytics, Crashlytics)</td><td>Anonim kullanım istatistikleri ve hata raporları, yalnızca onay verirseniz</td><td>Olay adları, cihaz modeli, işletim sistemi sürümü, hata kaydı</td><td>ABD ve küresel</td></tr>
   </tbody>
@@ -264,7 +267,7 @@
   <li><strong>Bir partnerle eşleşmemişseniz:</strong> hesabınız ve tüm bilgileriniz hemen silinir.</li>
   <li><strong>Bir partnerle eşleşmişseniz:</strong> silme, eşleşmeyi de sonlandırır. Şunlar hemen silinir:
     <ul>
-      <li>e-postanız, şifreniz, Google ile giriş kaydınız ve oturumlarınız;</li>
+      <li>e-postanız, şifreniz, Google ya da Apple ile giriş kaydınız ve oturumlarınız;</li>
       <li>bildirim anahtarınız, bildirimleriniz ve ayarlarınız;</li>
       <li>onay kayıtlarınız;</li>
       <li>doğum tarihiniz.</li>
