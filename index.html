@@ -183,14 +183,13 @@
   .hand.h1 { align-self: flex-start; margin-left: clamp(120px, 44%, 210px); }
   .hand.h2 { align-self: flex-end; margin-right: clamp(12px, 8%, 48px); }
 
-  /* Kapalı test */
-  .beta { margin-top: 96px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 28px; align-items: center;
+  /* İndirme kartı */
+  .store { margin-top: 96px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 28px; align-items: center;
           background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 30px 32px; }
-  .beta .droid { width: 54px; height: 54px; border-radius: 16px; background: var(--paper); display: grid; place-items: center; border: 1px solid var(--line); }
-  .beta .droid svg { width: 30px; height: 30px; fill: none; stroke: var(--fox-text); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .beta h3 { font-size: 26px; margin: 0 0 6px; }
-  .beta p { margin: 0; font-size: 16px; max-width: 36em; }
-  .beta .fine { margin-top: 8px; font-size: 13.5px; color: var(--muted); }
+  .store .ic { width: 54px; height: 54px; border-radius: 16px; background: var(--paper); display: grid; place-items: center; border: 1px solid var(--line); }
+  .store .ic svg { width: 30px; height: 30px; fill: none; stroke: var(--fox-text); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .store h3 { font-size: 26px; margin: 0 0 6px; }
+  .store p { margin: 0; font-size: 16px; max-width: 36em; }
   .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--btn); color: var(--btn-text); text-decoration: none; font-weight: 600;
          font-size: 16px; padding: 14px 22px; border-radius: 999px; white-space: nowrap; transition: transform .2s ease, box-shadow .2s ease; }
   .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px -10px var(--btn); }
@@ -238,7 +237,7 @@
     .duo { order: -1; justify-self: center; max-width: 320px; }
     .rules { grid-template-columns: 1fr; gap: 40px; }
     .scene { justify-self: start; }
-    .beta { grid-template-columns: 1fr; gap: 18px; }
+    .store { grid-template-columns: 1fr; gap: 18px; }
     .faq-grid { grid-template-columns: 1fr; gap: 28px; }
     .faq-side { position: static; }
     .principles { grid-template-columns: 1fr; gap: 40px; }
@@ -281,7 +280,7 @@
     .rules { margin-top: 72px; }
     .note { width: 92%; }
     .hand { font-size: 16px; }
-    .beta { margin-top: 72px; padding: 24px 22px; }
+    .store { margin-top: 72px; padding: 24px 22px; }
     .contact { padding: 72px 0; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
@@ -403,7 +402,7 @@
       </svg>
       <div>
         <h2>CoupleCup</h2>
-        <div class="status">Geliştiriliyor · Önce Android, sonra iPhone</div>
+        <div class="status">iPhone’da yayında · Android yakında</div>
       </div>
     </div>
 
@@ -488,14 +487,13 @@
       </div>
     </div>
 
-    <aside class="beta" aria-labelledby="beta-title">
-      <span class="droid" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2.8" width="12" height="18.4" rx="2.6"/><path d="M10.4 18h3.2"/></svg></span>
+    <aside class="store" aria-labelledby="store-title">
+      <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2.8" width="12" height="18.4" rx="2.6"/><path d="M10.4 18h3.2"/></svg></span>
       <div>
-        <h3 id="beta-title">Erken denemek ister misiniz?</h3>
-        <p>Yayından önce CoupleCup’ı Android’de kapalı testle deneyeceğiz ve birkaç çift arıyoruz. İkiniz de Android telefon kullanıyorsanız yazın, Google hesaplarınızla test listesine ekleyelim.</p>
-        <p class="fine">E-posta adreslerinizi yalnızca test daveti için kullanırız.</p>
+        <h3 id="store-title">CoupleCup artık iPhone’da</h3>
+        <p>App Store’dan indirip sevgilinizle eşleşebilirsiniz. Android sürümü de yakında Google Play’de.</p>
       </div>
-      <a class="btn" href="mailto:twofoxlabs@gmail.com?subject=CoupleCup%20kapal%C4%B1%20test&amp;body=Merhaba%2C%0A%0ACoupleCup%20kapal%C4%B1%20testine%20kat%C4%B1lmak%20istiyoruz.%0A%0AGoogle%20hesab%C4%B1m%C4%B1n%20e-postas%C4%B1%3A%0APartnerimin%20Google%20hesab%C4%B1n%C4%B1n%20e-postas%C4%B1%3A%0A%0A%C4%B0kimiz%20de%20Android%20kullan%C4%B1yoruz.%0A">Kapalı teste katıl <span aria-hidden="true">→</span></a>
+      <a class="btn" href="https://apps.apple.com/tr/app/couplecup/id6824533106">App Store’dan indir <span aria-hidden="true">→</span></a>
     </aside>
   </div>
 </section>
@@ -509,8 +507,8 @@
     </div>
     <div>
       <details>
-        <summary>iPhone’da var mı?</summary>
-        <p>Şimdilik yok, önce Android’de çıkacağız. iPhone sürümü ondan sonra gelecek ama henüz tarih veremiyoruz, belli olunca buraya yazarız.</p>
+        <summary>iPhone’da ve Android’de var mı?</summary>
+        <p>iPhone’da var, <a href="https://apps.apple.com/tr/app/couplecup/id6824533106">App Store’dan</a> indirebilirsiniz. Android sürümü yakında Google Play’de olacak, çıkınca buraya da ekleriz. Şimdilik yalnızca Türkiye’de yayındayız.</p>
       </details>
       <details>
         <summary>Neden fotoğraf yok?</summary>
